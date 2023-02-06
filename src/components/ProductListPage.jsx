@@ -1,10 +1,13 @@
 import React from "react"
+import { useMemo } from "react"
 import { useState } from "react"
 import { getProducts } from "../api"
 import Loading from "./Loading"
 import ProdctList from "./ProductList"
 
 function ProdctListPage() {
+
+    console.log('product list page running...')
 
     const [query, setQuery] = useState("")
     const [sort, setSort] = useState("default")
@@ -14,15 +17,15 @@ function ProdctListPage() {
     useState(() => {
         console.log("product list page running...")
         const p = getProducts()
-        p.then((products) => {
-            setProducts(products)
+        p.then((productsList) => {
+            setProducts(productsList)
             setLoading(false)
         })
     }, [])
 
     const filtData = products.filter((item) => {
-        return item.title.toLowerCase().indexOf(query.toLowerCase()) != -1
-    })
+            return item.title.toLowerCase().indexOf(query.toLowerCase()) != -1
+        })
 
     function handleQuery(event) {
         setQuery(event.target.value)
@@ -32,21 +35,23 @@ function ProdctListPage() {
         setSort(event.target.value)
     }
 
-    if (sort === "name") {
-        filtData.sort((x, y) => {
-            return x.title < y.title ? -1 : 1;
-        })
-    }
-    if (sort === "L2H") {
-        filtData.sort((x, y) => {
-            return x.price - y.price;
-        })
-    }
-    if (sort === "H2L") {
-        filtData.sort((x, y) => {
-            return y.price - x.price;
-        })
-    }
+    useMemo(()=>{
+        if (sort === "name") {
+            filtData.sort((x, y) => {
+                return x.title < y.title ? -1 : 1;
+            })
+        }
+        if (sort === "L2H") {
+            filtData.sort((x, y) => {
+                return x.price - y.price;
+            })
+        }
+        if (sort === "H2L") {
+            filtData.sort((x, y) => {
+                return y.price - x.price;
+            })
+        }
+    },[sort])
 
     if(loading){
         return <Loading />

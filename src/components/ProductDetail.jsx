@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -6,9 +6,10 @@ import { getProduct } from "../api";
 import Loading from "./Loading";
 import { ImPrevious, ImNext } from "react-icons/im"
 import Error404 from "./Error404";
+import { memo } from "react";
 
 const ProductDetail = ({onAddToCart}) => {
-    // console.log("product detail running...")
+    console.log("product detail running...")
 
     const [quantity, setQuantity] = useState(0)
 
@@ -28,10 +29,9 @@ const ProductDetail = ({onAddToCart}) => {
         })
     }, [id])
 
-    function handleQuantityChange(e){
-        // console.log('quantity of product of id : ',e.target.value)
+    const handleQuantityChange = useCallback((e)=>{
         setQuantity(+e.target.value)
-    }
+    },[]) 
 
     function handleAddToCart(){
         onAddToCart(id,quantity)
@@ -39,9 +39,11 @@ const ProductDetail = ({onAddToCart}) => {
 
     function handleQuantityOnPrevBtn(){
         setQuantity(0)
+        setLoading(true)
     }
     function handleQuantityOnNextBtn(){
         setQuantity(0)
+        setLoading(true)
     }
 
     if (loading) {
@@ -92,4 +94,4 @@ const ProductDetail = ({onAddToCart}) => {
         </div>
     )
 }
-export default ProductDetail
+export default memo(ProductDetail)

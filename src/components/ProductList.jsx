@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import Product from "./Product";
 
 function ProductList({filtData}) {
-    // console.log("product list running...")
+    console.log("product list running...")
     return (
         <div className="grid sm:grid-cols-3 gap-5 w-11/12 mx-auto my-7">
             {filtData.map((item) => {
@@ -21,4 +21,4 @@ function ProductList({filtData}) {
     )
 }
 
-export default ProductList
+export default memo(ProductList)
