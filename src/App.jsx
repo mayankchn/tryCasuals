@@ -6,6 +6,8 @@ import Footer from "./components/Footer"
 import Header from "./components/Header"
 import ProductDetail from "./components/ProductDetail"
 import ProdctListPage from "./components/ProductListPage"
+import RegisterForm from "./components/RegisterForm"
+import RegisterForm2 from "./components/RegisterForm2"
 
 
 function App() {
@@ -37,8 +39,8 @@ function App() {
   },0)
 
   return (
-  <div className="bg-secondary-200">
-    <Header totalProductsQuantity={totalProductsQuantity} />
+  <div className="bg-primary-200 max-w-lg mx-auto border px-10 py-7">
+    {/* <Header totalProductsQuantity={totalProductsQuantity} />
     <Routes>
       <Route index element={<ProdctListPage/>}></Route>
       <Route path="/products/:id/" element={<ProductDetail onAddToCart={handleAddToCartChange} />}></Route>
@@ -48,7 +50,9 @@ function App() {
     <Footer
       year={2022}
       name="TryCasuals" 
-    />
+    /> */}
+    {/* <RegisterForm /> */}
+    <RegisterForm2 />
   </div>
   )
 }
