@@ -4,6 +4,7 @@ import CartPage from "./components/CartPage"
 import Error404 from "./components/Error404"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
+import LoginPage from "./components/LoginPage"
 import ProductDetail from "./components/ProductDetail"
 import ProdctListPage from "./components/ProductListPage"
 
@@ -37,18 +38,21 @@ function App() {
   },0)
 
   return (
-  <div className="bg-secondary-200">
-    <Header totalProductsQuantity={totalProductsQuantity} />
-    <Routes>
-      <Route index element={<ProdctListPage/>}></Route>
-      <Route path="/products/:id/" element={<ProductDetail onAddToCart={handleAddToCartChange} />}></Route>
-      <Route path="/cart" element={<CartPage cart={cart} />}></Route>
-      <Route path="*" element={<Error404/>}></Route>
-    </Routes>    
-    <Footer
-      year={2022}
-      name="TryCasuals" 
-    />
+  // <div className="bg-secondary-200">
+  //   <Header totalProductsQuantity={totalProductsQuantity} />
+  //   <Routes>
+  //     <Route index element={<ProdctListPage/>}></Route>
+  //     <Route path="/products/:id/" element={<ProductDetail onAddToCart={handleAddToCartChange} />}></Route>
+  //     <Route path="/cart" element={<CartPage cart={cart} />}></Route>
+  //     <Route path="*" element={<Error404/>}></Route>
+  //   </Routes>    
+  //   <Footer
+  //     year={2022}
+  //     name="TryCasuals" 
+  //   />
+  // </div>
+  <div>
+    <LoginPage />
   </div>
   )
 }
