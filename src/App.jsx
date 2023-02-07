@@ -51,7 +51,7 @@ function App() {
   //     name="TryCasuals" 
   //   />
   // </div>
-  <div>
+  <div className="bg-secondary-200 h-screen p-10">
     <LoginPage />
   </div>
   )

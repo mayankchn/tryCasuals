@@ -1,19 +1,29 @@
 import { useFormik } from "formik";
 import React from "react";
 import FormButton from "./FormButton";
+import * as Yup from "yup"
 
 const LoginPage = () => {
+
+    // console.log('Yup ', Yup.object().shape())
 
     const callApi = () => {
         console.log("form data submitted...")
     }
 
-    const {handleSubmit,handleReset,handleChange,values} = useFormik({
+    const LoginSchema = Yup.object().shape({
+        name:Yup.string().min(2,"too short!").max(30,"too long!").required("required!"),
+        password:Yup.string().min(8,"too short!").max(15,"too long!").required('required!'),
+        email:Yup.string().email("Invalid emial!").required('required!')
+    })
+
+    const {handleSubmit,errors,touched,handleChange,values,handleBlur,dirty,isValid} = useFormik({
         initialValues:{
             name:"",
             email:"",
             password:""
         },
+        validationSchema:LoginSchema,
         onSubmit : callApi
     })
 
@@ -30,8 +40,10 @@ const LoginPage = () => {
                         placeholder="Name"
                         value={values.name}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         className="indent-2 px-2 py-1 border rounded"
                     />
+                    {touched.name && errors.name && <div className="text-primary-500 font-sm font-semibold">{errors.name}</div>}
                     <label htmlFor="email" className="sr-only">Email : </label>
                     <input 
                         id="email"
@@ -40,8 +52,10 @@ const LoginPage = () => {
                         placeholder="Email"
                         value={values.email}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         className="indent-2 px-2 py-1 border rounded"
                     />
+                    { touched.email && errors.email && <div className="text-primary-500 font-sm font-semibold">{errors.email}</div>}
                     <label htmlFor="password" className="sr-only">Password : </label>
                     <input 
                     id="password"
@@ -50,11 +64,13 @@ const LoginPage = () => {
                     placeholder="Password"
                     value={values.password}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     autoComplete="password"
                     className="indent-2 px-2 py-1 border rounded"
                     />
+                    {touched.password && errors.password && <div className="text-primary-500 font-sm font-semibold">{errors.password}</div>}
                     <div className="flex gap-2 border self-end">
-                    <FormButton className="bg-primary-500" type="submit">
+                    <FormButton className="bg-primary-500 disabled:bg-primary-200" type="submit" disabled={!dirty || !isValid}>
                         SUBMIT
                     </FormButton>
                     <FormButton className="bg-primary-500" type="button">
