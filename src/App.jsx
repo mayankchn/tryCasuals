@@ -47,7 +47,7 @@ function App() {
   //     <Route path="*" element={<Error404/>}></Route>
   //   </Routes>    
   //   <Footer
-  //     year={2022}
+  //     year={2023}
   //     name="TryCasuals" 
   //   />
   // </div>
