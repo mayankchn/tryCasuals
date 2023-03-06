@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import {useState} from "react"
 import { Route, Routes } from "react-router-dom"
 import CartPage from "./components/CartPage"
 import Error404 from "./components/Error404"
+import FancyInput from "./components/FancyInput"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import LoginPage from "./components/LoginPage"
@@ -37,6 +38,13 @@ function App() {
     return previous+cart[current]
   },0)
 
+  const [value,setValue] = useState('')
+
+  const handleValue = (e) => {
+    setValue(e.target.value)
+  }
+  console.log(value)
+
   return (
   // <div className="bg-secondary-200">
   //   <Header totalProductsQuantity={totalProductsQuantity} />
@@ -52,6 +60,7 @@ function App() {
   //   />
   // </div>
   <div className="bg-secondary-200 h-screen p-10">
+    <FancyInput type="text" value={value} onChange={handleValue} id="value" label="value" placeholder="Search" name="value" className=""/>
     <LoginPage />
   </div>
   )

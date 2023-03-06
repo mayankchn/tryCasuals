@@ -1,8 +1,8 @@
-import { Form, Formik, useFormik } from "formik";
+import { Form, Formik } from "formik";
 import React from "react";
 import FormButton from "./FormButton";
 import * as Yup from "yup"
-import Input from "./Input";
+import { FormikInput } from "./Input";
 
 const LoginPage = () => {
 
@@ -32,7 +32,7 @@ const LoginPage = () => {
                     <div className="flex flex-col gap-3">
                         <div className="flex flex-col">
                             <label htmlFor="userEmail" className="sr-only">Email : </label>
-                            <Input
+                            <FormikInput
                                 id="userEmail"
                                 type="email"
                                 name="email"
@@ -41,7 +41,7 @@ const LoginPage = () => {
                                 className="rounded-b-none"
                             />
                             <label htmlFor="userPassword" className="sr-only">Password : </label>
-                            <Input
+                            <FormikInput
                                 id="userPassword"
                                 type="password"
                                 name="password"
